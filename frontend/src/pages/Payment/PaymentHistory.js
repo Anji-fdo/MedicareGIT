@@ -114,6 +114,8 @@ export default function PaymentHistory() {
                                             >
                                                 <FontAwesomeIcon icon={faSearch} />
                                             </button>
+
+
                                         </div>
                                     </div>
                                 </div>
