@@ -18,6 +18,8 @@ export default function PaymentHistory() {
                 }
                 return response.json();
             })
+
+            
             .then((data) => {
                 setPaymentList(data);
                 setFilteredPaymentList(data);
