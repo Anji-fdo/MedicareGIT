@@ -108,7 +108,7 @@ export default function AddRefund() {
                             <div className='row'>
                                 <button type='button' className='btn btn-danger col-4 mt-4 mx-5' onClick={() => navigate('/cancel')}>Cancel</button>
                                 <button type='submit' className='btn btn-primary col-4 mt-4 mx-5'>Request Refund</button>
-                                <button type='new refund' className='btn btn-danger col-2 mt-6 mx-4'>new refund</button>
+                                
                             </div>
                         </form>
                     </div>
