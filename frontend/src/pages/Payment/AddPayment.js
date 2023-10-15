@@ -107,6 +107,7 @@ export default function AddPayment() {
                                     value={formData.date}
                                     onChange={handleInputChange}
                                     required
+                                    
                                 />
                             </div>
                             <div className='row'>
