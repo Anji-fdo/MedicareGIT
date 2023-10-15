@@ -13,10 +13,6 @@ export default function AddPayment() {
 
 
     const navigate = useNavigate(); 
-  
-    //creating const
-    const navigate = useNavigate();
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();
