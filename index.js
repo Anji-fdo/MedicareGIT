@@ -1,89 +1,107 @@
-import { message, Table } from "antd";
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { HideLoading, ShowLoading } from "../../../redux/loadersSlice";
-import moment from "moment";
-import { GetAllUsers } from "../../../apicalls/users";
-import Button from "../../../components/Button";
-//import IssuedBooks from "./IssuedBooks";
+import React, { useEffect } from 'react';
+import { Form, message } from "antd";
+import Button from "../../components/Button";
+import { Link , useNavigate } from "react-router-dom";
+import { RegisterUser } from "../../apicalls/users";
+// import { useDispatch} from "react-redux";
 
-function Users({ role }) {
-  //const [selectedUser, setSelectedUser] = useState(null);
-  //const [showIssuedBooks, setShowIssuedBooks] = useState(false);
-  //const [users, setUsers] = React.useState([]);
-  //const dispatch = useDispatch();
-  // const getUsers = async () => {
-  //   try {
-  //     dispatch(ShowLoading());
-  //     //const response = await GetAllUsers(role);
-  //     dispatch(HideLoading());
-  //     if (response.success) {
-  //       setUsers(response.data);
-  //     } else {
-  //       message.error(response.message);
-  //     }
-  //   } catch (error) {
-  //     dispatch(HideLoading());
-  //     message.error(error.message);
-  //   }
-  // };
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
+function Register() {
 
-  const columns = [
-    {
-      title: "Id",
-      dataIndex: "_id",
-    },
-    {
-      title: "Name",
-      dataIndex: "name",
-    },
-    {
-      title: "Email",
-      dataIndex: "email",
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone",
-    },
-    {
-      title: "Created At",
-      dataIndex: "createdAt",
-     // render: (createdAt) => moment(createdAt).format("DD-MM-YYYY hh:mm A"),
-    },
-    {
-      title: "Actions",
-      dataIndex: "actions",
-      render: (actions, record) => (
-        <div>
-          {/* <Button
-            title="Books"
-            variant="outlined"
-            onClick={() => {
-              setSelectedUser(record);
-              setShowIssuedBooks(true);
-            }}
-          /> */}
+    const navigate = useNavigate();
+    //const dispatch = useDispatch();
+    const onFinish = async (values) => {
+        //console.log("Success:",values);
+        try {
+            //dispatch(ShowLoading());
+            const response = await RegisterUser(values);
+            //dispatch(HideLoading());
+            if (response.success) {
+                message.success(response.message);
+            }
+            else {
+                message.error(response.message);
+            }
+
+        } catch (error) {
+            // dispatch(HideLoading());
+            message.error(error.message);
+        }
+    };
+
+  useEffect(() => {
+      const token = localStorage.getItem("token");
+      if ( token ){
+        window.location.href = "/";
+      }
+    }, []);
+
+    return (
+        <div className="h-screen bg-primary flex items-center justify-center">
+            <div className="authentication-form bg-white p-3 rounded">
+                <h1 className="text-secondary text-2xl font-bold mb-1">
+                    REGISTER
+                </h1>
+
+                <Form layout="vertical" onFinish={onFinish} >
+                    <Form.Item
+                        label="Name"
+                        name="name"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your name!",
+                        },
+                    ]}
+                    >
+                        <input type="text" placeholder="Name" />
+                    </Form.Item>
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your email!",
+                        },
+                    ]}
+                    >
+                        <input type="email" placeholder="Email" />
+                    </Form.Item>
+                    <Form.Item
+                        label="Phone Number"
+                        name="phone"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your phone number!",
+                        },
+                    ]}
+                    >
+                        <input type="number" placeholder="Phone Number" />
+                    </Form.Item>
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input your password!",
+                        },
+                    ]}
+                    >
+                        <input type="password" placeholder="Password" />
+                    </Form.Item>
+                    <div className="text-center mt-2 flex flex-col gap-1">
+                        <Button title="Register" type="submit" />
+                        <Link to="/" className="text-primary text-sm underline">
+                            Already have an account? Click Here To Login
+                        </Link>
+                    </div>
+                </Form>
+            </div>
         </div>
-      ),
-    },
-  ];
-  return (
-    <div>
-      {/* <Table dataSource={users} columns={columns} />
-
-      {showIssuedBooks && (
-        <IssuedBooks
-          showIssuedBooks={showIssuedBooks}
-          setShowIssuedBooks={setShowIssuedBooks}
-          selectedUser={selectedUser}
-        />
-      )} */}
-    </div>
-  );
+    );
 }
 
-export default Users;
+export default Register;
