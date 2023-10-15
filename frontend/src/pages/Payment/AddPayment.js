@@ -11,7 +11,8 @@ export default function AddPayment() {
         date: ''
     });
 
-    const navigate = useNavigate(); // nav 
+
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,6 +46,7 @@ export default function AddPayment() {
         });
     };
 
+    //creating table headers
     return (
         <div>
             <div className='container mt-5'>
