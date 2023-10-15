@@ -11,7 +11,7 @@ export default function AddPayment() {
         date: ''
     });
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate(); // nav 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
