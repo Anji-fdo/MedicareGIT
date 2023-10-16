@@ -5,9 +5,7 @@ function Button({
   variant = "contained",
   color = "primary",
   type = "button",
-  onClick,
-  fullWidth = false,
-  disabled
+
 }) {
   let className = fullWidth ? "w-100 rounded " : "pr-2 pl-2 rounded ";
   if (variant === "contained" && !disabled) {
