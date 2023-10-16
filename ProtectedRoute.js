@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { message } from "antd";
 import { useNavigate } from "react-router-dom";
 import { GetLoggedInUserDetails } from "../apicalls/users";
-import { message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../redux/usersSlice";
+import { SetUser } from "../redux/usersSlice";
 import { HideLoading, ShowLoading } from "../redux/loadersSlice";
 
 function ProtectedRoute({ children }) {
@@ -17,41 +17,28 @@ function ProtectedRoute({ children }) {
       const response = await GetLoggedInUserDetails();
       dispatch(HideLoading());
       if (response.success) {
-        dispatch(setUser(response.data));
+        dispatch(SetUser(response.data));
       } else {
+        localStorage.removeItem("token");
+        navigate("/login");
         message.error(response.message);
       }
     } catch (error) {
+      localStorage.removeItem("token");
+      navigate("/login");
       dispatch(HideLoading());
       message.error(error.message);
-      navigate("/login");
     }
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/");
+      navigate("/login");
     } else {
       validateUserToken();
     }
   }, []);
-
-  // useEffect(() => {
-  //   console.log("login")
-  //   if (user) {
-      
-  //     if (user.role === "manager") {
-  //       navigate("/manager"); 
-  //     } else if (user.role === "member") {
-  //       navigate("/memberHr");
-  //     } else if( user.role === "sal") {
-  //       navigate("/salaryHR")
-  //     } else if( user.role === "salv") {
-  //       navigate("/salaryV")
-  //     }
-  //   }
-  // }, [user, navigate]);
 
   return (
     <div>
@@ -62,11 +49,10 @@ function ProtectedRoute({ children }) {
               className="text-2xl text-white font-bold cursor-pointer"
               onClick={() => navigate("/")}
             >
-              MediCare
+              MEDICARE
             </h1>
-
-            <div className="flex items-center gap-1 bg-white p-1 rounded ml">
-              <i className="ri-shield-user-line "></i>
+            <div className="flex items-center gap-1 bg-white p-1 rounded">
+              <i className="ri-shield-user-line"></i>
               <span
                 className="text-sm underline"
                 onClick={() => navigate("/profile")}
@@ -77,12 +63,11 @@ function ProtectedRoute({ children }) {
                 className="ri-logout-box-r-line ml-2"
                 onClick={() => {
                   localStorage.removeItem("token");
-                  navigate("/");
+                  navigate("/login");
                 }}
               ></i>
             </div>
           </div>
-
           <div className="content mt-1">{children}</div>
         </div>
       )}
