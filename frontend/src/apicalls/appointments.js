@@ -53,6 +53,7 @@ export const DeleteAppointment = async (id) => {
 
 //get appointment by id
 export const GetAppointmentById = async (id) => {
+  //try catch block
   try {
     const response = await axiosInstance.get(
       `http://localhost:5000/api/appointments/get-appointment-by-id/${id}`
