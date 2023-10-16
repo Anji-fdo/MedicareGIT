@@ -1,5 +1,6 @@
 import { axiosInstance } from "./axiosInstance";
 
+//appointments api
 //add appointment
 export const AddAppointment = async (payload) => {
   try {
