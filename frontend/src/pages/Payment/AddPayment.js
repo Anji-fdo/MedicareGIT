@@ -26,7 +26,7 @@ export default function AddPayment() {
             });
 
             if (response.ok) {
-                // Payment successful, navigate to a success page or perform other actions
+                // Payment successful, 
                 navigate(`/paymentsuccess/${formData.appointmentNumber}`);
             } else {
                 // Handle error scenarios, maybe display an error message to the user
