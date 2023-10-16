@@ -52,7 +52,7 @@ export default function AddDrugs() {
 
     return (
         <div className="container">
-            
+           <Header/>
             <h2 className="text-start mt-3">Add drugs</h2>
             <div className="row d-flex justify-content-center align-middle h-100 mt-5">
                 <div className="col-6 shadow-lg p-3 text-start mb-5 bg-white rounded">
@@ -89,8 +89,7 @@ export default function AddDrugs() {
                                         type="date"
                                         className="form-control"
                                         name="expirationDate"
-                                        onChange={handleInputChange}
-                                        required
+                                        
                                     />
                                 </div>
                                 <div className="col-sm-6">
