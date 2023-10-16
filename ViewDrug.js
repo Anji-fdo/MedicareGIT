@@ -37,7 +37,7 @@ export default function ViewDrug() {
 
     return (
         <div className="container mt-5">
-            
+            <Header/>
             <div className="container">
                 <h2 className="text-start mt-3">View Drug</h2>
                 <div className="row d-flex justify-content-center align-middle h-100 mt-5">
