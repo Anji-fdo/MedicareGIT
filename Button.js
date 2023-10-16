@@ -12,6 +12,9 @@ function Button({
     className += "bg-" + color + " text-white";
   } else if (variant === "outlined" && !disabled) {
     className += "border-" + color + " text-" + color;
+    onClick,
+  fullWidth = false,
+  disabled
   }
 
   if (disabled) {
