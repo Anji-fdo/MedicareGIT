@@ -74,7 +74,7 @@ export default function ProductList() {
 
     return (
         <div className="container pt-5">
-            <Header/>
+            
             <h2 className='text-start mb-4'>Product List</h2>
             <Link to="/adddrug" className='btn btn-primary'>Add a Drug</Link>
             <div className="col-3">

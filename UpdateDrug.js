@@ -104,7 +104,14 @@ export default function UpdateDrug() {
                         </div>
                         <div className="form-group">
                             <label className="control-label">Dosage Form</label>
-                            
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="dosageForm"
+                                value={formData.dosageForm}
+                                onChange={handleInputChange}
+                            />
+
                         </div>
                         <div className="form-group">
                             <label className="control-label">Manufacturer</label>
