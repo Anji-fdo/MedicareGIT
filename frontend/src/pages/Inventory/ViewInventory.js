@@ -13,7 +13,7 @@ export default function ViewInventory() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [selectedInventoryId, setSelectedInventoryId] = useState(null);
 
-    const navigate = useNavigate();
+    
     const [show, setShow] = useState(false);
 
     useEffect(() => {
