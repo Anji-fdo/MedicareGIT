@@ -11,7 +11,8 @@ export default function AddPayment() {
         date: ''
     });
 
-    const navigate = useNavigate();
+
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,7 +26,7 @@ export default function AddPayment() {
             });
 
             if (response.ok) {
-                // Payment successful, navigate to a success page or perform other actions
+                // Payment successful, 
                 navigate(`/paymentsuccess/${formData.appointmentNumber}`);
             } else {
                 // Handle error scenarios, maybe display an error message to the user
@@ -45,6 +46,7 @@ export default function AddPayment() {
         });
     };
 
+    //creating table headers
     return (
         <div>
             <div className='container mt-5'>
@@ -105,6 +107,7 @@ export default function AddPayment() {
                                     value={formData.date}
                                     onChange={handleInputChange}
                                     required
+                                    
                                 />
                             </div>
                             <div className='row'>

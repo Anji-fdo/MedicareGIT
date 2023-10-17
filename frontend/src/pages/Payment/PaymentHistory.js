@@ -15,9 +15,13 @@ export default function PaymentHistory() {
             .then((response) => {
                 if (!response.ok) {
                     throw new Error('Failed to fetch payment data');
+                    
+                
                 }
                 return response.json();
             })
+
+            
             .then((data) => {
                 setPaymentList(data);
                 setFilteredPaymentList(data);
@@ -28,11 +32,12 @@ export default function PaymentHistory() {
     }, []);
 
     const handleSearchChange = (e) => {
-        const query = e.target.value;
-        setSearchQuery(query);
+         const query = e.target.value;
+         setSearchQuery(query);
 
         if (query === "") {
-            setFilteredPaymentList([...paymentList]);
+            setFilteredPaymentList([...paymentList]); //show payment list
+        
         } else {
             const filtered = paymentList.filter((item) =>
                 item.invoiceNumber.toString().includes(query.toLowerCase())
@@ -109,6 +114,8 @@ export default function PaymentHistory() {
                                             >
                                                 <FontAwesomeIcon icon={faSearch} />
                                             </button>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -148,3 +155,7 @@ export default function PaymentHistory() {
         </div>
     );
 }
+
+
+
+  
