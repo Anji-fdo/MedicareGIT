@@ -82,6 +82,7 @@ export default function AddInventory() {
           }
           alert("Inventory Item Added Successfully");
           navigate("/viewinventory");
+          //set data
           setFormData({
             name: "",
             code: "",
