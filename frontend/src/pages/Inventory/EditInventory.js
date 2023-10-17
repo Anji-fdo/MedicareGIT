@@ -45,6 +45,7 @@ export default function EditInventory() {
                     unit: data.unit,
                     price: data.price.toString(),
                     cost: data.cost.toString(),
+                    restock: data.restock.toString(),//Adding restock
                 });
             })
             .catch((err) => {
