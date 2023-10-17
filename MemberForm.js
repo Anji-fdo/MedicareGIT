@@ -193,18 +193,4 @@ function MemberForm({
   );
 }
 
-export default MemberForm;
-
-export default function AddDrugs() {
-  const [formData, setFormData] = useState({
-      medicineName: '',
-      genericName: '',
-      expirationDate: '',
-      dosageForm: '',
-      manufacturer: '',
-      storageConditions: '',
-      price: '',
-      quantity: '',
-      file: null
-  });
 
