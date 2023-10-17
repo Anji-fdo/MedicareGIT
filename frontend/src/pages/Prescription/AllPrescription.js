@@ -11,6 +11,10 @@ export default function AllPrescription() {
   const [prescription, setPrescription] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
+
+
+//adding user effects
+
   useEffect(() => {
     function getPrescription() {
       axios
