@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export default function UpdatedPrescription() {
+  //set user datails
   const { id } = useParams();
   const [patientName, setPatientName] = useState("");
   const [patientPhone, setPatientPhone] = useState("");

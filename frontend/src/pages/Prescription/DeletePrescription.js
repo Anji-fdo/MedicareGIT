@@ -14,6 +14,9 @@ export default function DeletePrescription() {
     const [issueDate, setIssueDate] = useState("");
     const [prescription, setPrescription] = useState("");
 
+
+    //add  constain style
+
     const containerStyle = {
       backgroundImage: "url('./images/clinic-slider-compressor.jpg')",
       backgroundRepeat: "no-repeat",
@@ -22,6 +25,7 @@ export default function DeletePrescription() {
       backgroundAttachment: "fixed",
     };
 
+    //formstyle
     const formStyle = {
         marginTop: "20px",
     };

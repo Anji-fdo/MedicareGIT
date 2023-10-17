@@ -16,6 +16,8 @@ export default function AddPrescription() {
     const [searchValue, setSearchValue] = useState("");
     const [errors, setErrors] = useState({});
 
+
+    // validation  details
     const validateForm = () => {
         const errors = {};
     
