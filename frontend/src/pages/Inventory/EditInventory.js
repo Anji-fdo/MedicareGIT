@@ -14,7 +14,7 @@ export default function EditInventory() {
         unit: '',
         price: '',
         cost: '',
-        restockLevel: '', // corrected from 'restock'
+        restockLevel: '',
     });
 
     const [formErrors, setFormErrors] = useState({});
@@ -44,8 +44,13 @@ export default function EditInventory() {
                 return response.json();
             })
             .then((data) => {
-                // Assuming your data object keys match the state keys
-                setFormData({ ...data, quantity: data.quantity.toString(), price: data.price.toString(), cost: data.cost.toString(), restockLevel: data.restockLevel.toString() });
+                setFormData({ 
+                    ...data, 
+                    quantity: data.quantity.toString(), 
+                    price: data.price.toString(), 
+                    cost: data.cost.toString(), 
+                    restockLevel: data.restockLevel.toString() 
+                });
             })
             .catch((err) => {
                 setError(err.message);
@@ -210,6 +215,8 @@ export default function EditInventory() {
                                     {formErrors.price && <div className="text-danger">{formErrors.price}</div>}
                                 </div>
                             </div>
+                            {/* Corrected the structure for the 'Cost' and 'Re-stock Level' input fields */}
+                        <div className='row'>
                             <div className='col-6'>
                                 <div className="form-group">
                                     <label htmlFor="cost">Cost</label>
@@ -223,7 +230,9 @@ export default function EditInventory() {
                                         placeholder="Enter Cost"
                                         required
                                     />
-                                    <div className="col-6">
+                                </div>
+                            </div>
+                            <div className='col-6'>
                                 <div className="form-group">
                                     <label htmlFor="restockLevel">Re-stock Level</label>
                                     <input
@@ -236,12 +245,11 @@ export default function EditInventory() {
                                         placeholder="Enter Re-stock Level"
                                         required
                                     />
-                                    {/* Conditional rendering for individual field error */}
                                     {formErrors.restockLevel && <div className="text-danger">{formErrors.restockLevel}</div>}
                                 </div>
                             </div>
-                            </div>
                         </div>
+
                         <div className="d-flex justify-content-center">
                             <button type="submit" className="btn col-3 mt-3 mb-5 btn-dark">
                                 Update
