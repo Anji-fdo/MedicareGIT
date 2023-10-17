@@ -81,6 +81,8 @@ function AddPatients() {
     // your styles here
   };
 
+
+  //Adding classes
   return (
     <div className="add-patients-container">
       <Header />
