@@ -25,6 +25,7 @@ export default function DeletePrescription() {
       backgroundAttachment: "fixed",
     };
 
+    //formstyle
     const formStyle = {
         marginTop: "20px",
     };

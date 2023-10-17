@@ -143,6 +143,7 @@ export default function AllPrescription() {
                   <td>{prescription.doctorName}</td>
                   <td>{prescription.issueDate}</td>
                   <td>
+                    
                     <Link
                       to={`/update-prescription/${prescription._id}`}
                       className="btn btn-danger"
