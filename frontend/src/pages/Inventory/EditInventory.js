@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
+//Edit inventory
 export default function EditInventory() {
     const { id } = useParams();
     const navigate = useNavigate();
