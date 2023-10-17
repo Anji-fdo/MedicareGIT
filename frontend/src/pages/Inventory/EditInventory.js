@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
-//Edit inventory
 export default function EditInventory() {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -15,6 +14,7 @@ export default function EditInventory() {
         unit: '',
         price: '',
         cost: '',
+        restockLevel: '', // corrected from 'restock'
     });
 
     const [formErrors, setFormErrors] = useState({});
@@ -24,7 +24,11 @@ export default function EditInventory() {
         let isValid = true;
 
         // Validation logic (similar to AddInventory component)
-        // ...
+        // ... (Please ensure to validate form data as per your requirement)
+
+        if (Object.keys(errors).length) {
+            isValid = false;
+        }
 
         setFormErrors(errors);
         return isValid;
@@ -33,20 +37,15 @@ export default function EditInventory() {
     useEffect(() => {
         // Fetch data for editing based on the provided id parameter
         fetch(`http://localhost:5000/inventory/get/${id}`)
-            .then((response) => response.json())
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
             .then((data) => {
-                // Update formData state with fetched data
-                setFormData({
-                    name: data.name,
-                    code: data.code,
-                    brand: data.brand,
-                    category: data.category,
-                    quantity: data.quantity.toString(),
-                    unit: data.unit,
-                    price: data.price.toString(),
-                    cost: data.cost.toString(),
-                    restock: data.restock.toString(),//Adding restock
-                });
+                // Assuming your data object keys match the state keys
+                setFormData({ ...data, quantity: data.quantity.toString(), price: data.price.toString(), cost: data.cost.toString(), restockLevel: data.restockLevel.toString() });
             })
             .catch((err) => {
                 setError(err.message);
@@ -57,7 +56,6 @@ export default function EditInventory() {
         e.preventDefault();
 
         if (validateForm()) {
-            // Update inventory item using the provided id
             fetch(`http://localhost:5000/inventory/update/${id}`, {
                 method: 'PUT',
                 headers: {
@@ -69,6 +67,9 @@ export default function EditInventory() {
                     if (!response.ok) {
                         throw new Error('Failed to update inventory item');
                     }
+                    return response.json();
+                })
+                .then(() => {
                     alert('Inventory Item Updated Successfully');
                     navigate('/viewinventory');
                 })
@@ -80,10 +81,10 @@ export default function EditInventory() {
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
+        setFormData(prevState => ({
+            ...prevState,
             [name]: value,
-        });
+        }));
     };
 
     return (
@@ -222,11 +223,10 @@ export default function EditInventory() {
                                         placeholder="Enter Cost"
                                         required
                                     />
-                                    <div className="row mb-3">
                                     <div className="col-6">
-                                    <div className="form-group">
-                                        <label htmlFor="restockLevel">Re-stock Level</label>
-                                        <input
+                                <div className="form-group">
+                                    <label htmlFor="restockLevel">Re-stock Level</label>
+                                    <input
                                         type="number"
                                         name="restockLevel"
                                         value={formData.restockLevel}
@@ -235,10 +235,11 @@ export default function EditInventory() {
                                         id="restockLevel"
                                         placeholder="Enter Re-stock Level"
                                         required
-                                        />
-                                    </div>
-                                    {formErrors.cost && <div className="text-danger">{formErrors.cost}</div>}
+                                    />
+                                    {/* Conditional rendering for individual field error */}
+                                    {formErrors.restockLevel && <div className="text-danger">{formErrors.restockLevel}</div>}
                                 </div>
+                            </div>
                             </div>
                         </div>
                         <div className="d-flex justify-content-center">
