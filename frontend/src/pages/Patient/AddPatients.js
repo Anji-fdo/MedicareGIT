@@ -47,6 +47,7 @@ function AddPatients() {
     }
   };
 
+  //adding styles
   const divStyle = {
     width: "900px",
     height: "570px",
