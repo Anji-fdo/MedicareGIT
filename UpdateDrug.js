@@ -90,6 +90,7 @@ export default function UpdateDrug() {
                                 name="genericName"
                                 value={formData.genericName}
                                 onChange={handleInputChange}
+                               
                             />
                         </div>
                         <div className="form-group">
