@@ -89,14 +89,7 @@ export default function ProductList() {
                                 value={searchQuery}
                                 onChange={handleSearchChange}
                             />
-                            <div className="input-group-append">
-                                <button
-                                    id="button-addon1"
-                                    type="submit"
-                                    className="btn btn-link text-dark"
-                                >
-                                    <FontAwesomeIcon icon={faSearch} />
-                                </button>
+                            
                             </div>
                         </div>
                     </div>
