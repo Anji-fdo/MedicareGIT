@@ -267,8 +267,8 @@ export default function AddInventory() {
                     />
                   </div>
                 </div>
-              </div>
-
+              </div>//form class
+              
               {formErrors.name && (
                 <div className="text-danger">{formErrors.name}</div>
               )}
