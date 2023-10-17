@@ -222,6 +222,21 @@ export default function EditInventory() {
                                         placeholder="Enter Cost"
                                         required
                                     />
+                                    <div className="row mb-3">
+                                    <div className="col-6">
+                                    <div className="form-group">
+                                        <label htmlFor="restockLevel">Re-stock Level</label>
+                                        <input
+                                        type="number"
+                                        name="restockLevel"
+                                        value={formData.restockLevel}
+                                        onChange={handleInputChange}
+                                        className="form-control"
+                                        id="restockLevel"
+                                        placeholder="Enter Re-stock Level"
+                                        required
+                                        />
+                                    </div>
                                     {formErrors.cost && <div className="text-danger">{formErrors.cost}</div>}
                                 </div>
                             </div>
